@@ -436,7 +436,7 @@
             safetyMenu : ["on", "off"],
             variableMenu : ["HeadPitch", "HeadYaw", "HipPitch", "HipRoll", "KneePitch", "LElbowRoll", "LElbowYaw", "LHand", "LShoulderPitch", "LShoulderRoll", "LWristYaw", "RElbowRoll", "RElbowYaw", "RHand", "RShoulderPitch", "RShoulderRoll", "RWristYaw"],
             stiffnessMenu : ["Head", "LArm", "RArm"],
-            tabletPageMenu : ["4ButtonView", "YesNoButtonView"],
+            tabletPageMenu : ["pepper", "odai"],
         },
         ja: {
             eventMenu : ["Pepperと接続できた", "右のバンパーがおされた", "左のバンパーがおされた", "左手にふれた", "右手にふれた", "頭にふれた", "顔を見つけた", "聞き取った", "言葉がわかった", "ボタン１がおされた", "ボタン２がおされた", "ボタン３がおされた", "ボタン４がおされた", "ボタンYESがおされた", "ボタンNOがおされた"],
@@ -447,7 +447,8 @@
             safetyMenu : ["on", "off"],
             variableMenu : ["HeadPitch", "HeadYaw", "HipPitch", "HipRoll", "KneePitch", "LElbowRoll", "LElbowYaw", "LHand", "LShoulderPitch", "LShoulderRoll", "LWristYaw", "RElbowRoll", "RElbowYaw", "RHand", "RShoulderPitch", "RShoulderRoll", "RWristYaw"],
             stiffnessMenu : ["Head", "LArm", "RArm"],
-            tabletPageMenu : ["ボタン４つ", "ボタン２つ"],
+            ta
+u : ["Pepperのロゴ画像", "お題"],
         }
     }
     
