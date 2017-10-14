@@ -377,13 +377,13 @@
                 [" ", "Set speech language %m.languageMenu", "set_speech_language", "English"],
 
                 // movement
-                [" ", "Move x: %n m, y: %n m, turn: %n rad", "move", 0.0, 0.0, 0.0],
+                // [" ", "Move x: %n m, y: %n m, turn: %n rad", "move", 0.0, 0.0, 0.0],
 
                 // tablet-relevant blocks
                 [" ", "Change tablet view %m.tabletPageMenu", "change_tablet_view", "odai"],
-                [" ", "Display %s on tablet", "display_media", "dog.jpg"],
-                [" ", "Hide tablet image", "hide_media"],
-                [" ", "Upload media file %s", "upload_media", "filename.jpg"],
+                // [" ", "Display %s on tablet", "display_media", "dog.jpg"],
+                // [" ", "Hide tablet image", "hide_media"],
+                // [" ", "Upload media file %s", "upload_media", "filename.jpg"],
 
                 // event listener
                 ["h", "When %m.eventMenu", "when_evt_occurs", "InitializationComplete"],
@@ -411,13 +411,13 @@
                 [" ", "言語: %m.languageMenu", "set_speech_language", "日本語"],
 
                 // movement
-                [" ", "前後 %n, 左右 %n, 角度 %n に移動する", "move", 0.0, 0.0, 0.0],
+                // [" ", "前後 %n, 左右 %n, 角度 %n に移動する", "move", 0.0, 0.0, 0.0],
 
                 // tablet-relevant blocks
                 [" ", "ディスプレイ表示 %m.tabletPageMenu", "change_tablet_view", "お題画像"],
-                [" ", "ディスプレイに %s を表示", "display_media", "dog.jpg"],
-                [" ", "ディスプレイの表示を消す", "hide_media"],
-                [" ", "%s をPepperに送る", "upload_media", "filename.jpg"],
+                // [" ", "ディスプレイに %s を表示", "display_media", "dog.jpg"],
+                // [" ", "ディスプレイの表示を消す", "hide_media"],
+                // [" ", "%s をPepperに送る", "upload_media", "filename.jpg"],
 
                 // event listener
                 ["h", "%m.eventMenu が起きたとき", "when_evt_occurs", "Pepperと接続できた"],
@@ -439,7 +439,7 @@
             tabletPageMenu : ["odai", "pepper"],
         },
         ja: {
-            eventMenu : ["Pepperと接続できた", "右のバンパーがおされた", "左のバンパーがおされた", "左手にふれた", "右手にふれた", "頭にふれた", "顔を見つけた", "聞き取った", "言葉がわかった", "ボタン１がおされた", "ボタン２がおされた", "ボタン３がおされた", "ボタン４がおされた", "ボタンYESがおされた", "ボタンNOがおされた"],
+            eventMenu : ["Pepperと接続できた", "右のバンパーがおされた", "左のバンパーがおされた", "左手にふれた", "右手にふれた", "頭にふれた", "顔を見つけた", "聞き取った", "言葉がわかった"],
             dataMenu : ["言葉がわかった"],
             posesMenu : ["ウェーブ", "おじぎ", "うなずく", "頭をふる"],
             behaviorMenu: ["基本姿勢", "両手ひろげ", "片手でどうぞ", "ジャン", "両手腰で傾く", "バンザイ", "両手前に", "やれやれ", "片手でガッツポーズ", "両手を腰に", "がっかり", "エクセレント！", "片手＋うなずく", "両手＋うなずく", "コレです", "オッス！", "両手でほめる", "次はあなたです", "両手広げ", "バイバイ", "以上です", "いやいやいや", "おじぎ", "タブレットに注目", "歩く", "なーんてね", "拝む", "泳ぐ", "不思議ポーズ１", "不思議ポーズ３", "不思議ポーズ２"],
