@@ -11,7 +11,7 @@
     // 2 => connected (Green)
     var myStatus = 0;
     var myMsg = "disconnected";
-    
+
     // maps animation names to the appropriate animation path
     var animations = {
         "wave" : "animations/Stand/Gestures/Hey_1",
@@ -24,7 +24,7 @@
         "頭をふる" : "animations/Stand/Gestures/No_1"
     };
 
-    var behavior_animations = { 
+    var behavior_animations = {
         "基本姿勢": "taro_motion/n-kihonshisei",
         "両手ひろげ": "taro_motion/n-ryotehiroge",
         "片手でどうぞ": "taro_motion/n-katatededouzo",
@@ -55,32 +55,32 @@
         "泳ぐ": "taro_motion/n-oyogu",
         "不思議ポーズ１": "taro_motion/n-uranai1",
         "不思議ポーズ３": "taro_motion/n-uranai3",
-        "不思議ポーズ２": "taro_motion/n-uranai2" 
+        "不思議ポーズ２": "taro_motion/n-uranai2"
     };
 
     var ja_menu_mapping = {
-        "Pepperと接続できた" : "InitializationComplete", 
-        "右のバンパーがおされた": "RightBumperPressed", 
-        "左のバンパーがおされた": "LeftBumperPressed", 
-        "左手にふれた": "HandLeftBackTouched", 
-        "右手にふれた": "HandRightBackTouched", 
+        "Pepperと接続できた" : "InitializationComplete",
+        "右のバンパーがおされた": "RightBumperPressed",
+        "左のバンパーがおされた": "LeftBumperPressed",
+        "左手にふれた": "HandLeftBackTouched",
+        "右手にふれた": "HandRightBackTouched",
         "頭にふれた": "HeadTouched",
-        "顔を見つけた": "FaceDetected", 
-        "聞き取った": "SpeechDetected", 
-        "言葉がわかった": "WordRecognized", 
-        "ボタン１がおされた": "Button1Pressed", 
-        "ボタン２がおされた": "Button2Pressed", 
-        "ボタン３がおされた": "Button3Pressed", 
-        "ボタン４がおされた": "Button4Pressed", 
-        "ボタンYESがおされた": "ButtonYesPressed", 
-        "ボタンNOがおされた": "ButtonNoPressed"
+        // "顔を見つけた": "FaceDetected",
+        "聞き取った": "SpeechDetected",
+        "言葉がわかった": "WordRecognized",
+        // "ボタン１がおされた": "Button1Pressed",
+        // "ボタン２がおされた": "Button2Pressed",
+        // "ボタン３がおされた": "Button3Pressed",
+        // "ボタン４がおされた": "Button4Pressed",
+        // "ボタンYESがおされた": "ButtonYesPressed",
+        // "ボタンNOがおされた": "ButtonNoPressed"
     }
 
     var ja_tablet_mapping = {
-        "お題画像" : "odai", 
+        "お題画像" : "odai",
         "Pepperロゴ" : "pepper"
     }
-    
+
     /**
     * Send commands to server, to be passed on to the naoqi python sdk
     * @param {String} cmd the module and command to execute (eg. "ALTextToSpeech.say")
@@ -96,9 +96,9 @@
     */
     ext.cnct = function () {
         console.log("Connecting to Server...");
-        
+
         window.socket = new WebSocket("ws://127.0.0.1:8080");
-        
+
         window.socket.onopen = function () {
             var msg = JSON.stringify({ "info": "ScratchX ready" });
             window.socket.send(msg);
@@ -112,7 +112,7 @@
                 if (msg["pepper_evt"] == "InitializationComplete") {
                     myStatus = 2;
                     myMsg = "connected";
-                } 
+                }
                 evt_vals[msg["pepper_evt"]] = msg["evt_val"];
                 evt_statuses[msg["pepper_evt"]] = true;
                 if (msg["pepper_evt"].indexOf("TactilTouched") >= 0) {
@@ -125,11 +125,11 @@
             } else if (msg["connected"]) { // response from server verifying that Scratch is connected
                 myStatus = 1;
                 myMsg = "initializing";
-            } 
+            }
 
             // console.log(msg);
         };
-        
+
         window.socket.onclose = function (event) {
             console.log("Connection closed.");
             socket = null;
@@ -149,10 +149,10 @@
     };
 
     /**
-    * Status reporting code. 
+    * Status reporting code.
     * Use this to report missing hardware, plugin or unsupported browser
     * (occassionally polled to update the color of the button)
-    */ 
+    */
     ext._getStatus = function (status, msg) {
         return {status: myStatus, msg: myMsg};
     };
@@ -160,7 +160,7 @@
     /**
     * Command to have pepper say the given string (no extra animation)
     * @param {String} say_str the string for Pepper to say
-    */ 
+    */
     ext.say = function(say_str, pitch, speed) {
         pitch = Math.min(Math.max(50, pitch), 200);
         speed = Math.min(Math.max(50, speed), 400);
@@ -187,9 +187,9 @@
     ext.say_with_animation = function(say_str, animation, pitch, speed) {
         pitch = Math.min(Math.max(50, pitch), 200);
         speed = Math.min(Math.max(50, speed), 400);
-        var msg = JSON.stringify({ 
-            "pepper_say": "^start(" + animations[animation] + ") " + say_str, 
-            "pitch" : pitch, 
+        var msg = JSON.stringify({
+            "pepper_say": "^start(" + animations[animation] + ") " + say_str,
+            "pitch" : pitch,
             "speed" : speed,
             "cmd" : "ALAnimatedSpeech.say" });
         window.socket.send(msg);
@@ -203,9 +203,9 @@
     ext.say_with_animation_ja = function(animation, say_str, pitch, speed) {
         pitch = Math.min(Math.max(50, pitch), 200);
         speed = Math.min(Math.max(50, speed), 400);
-        var msg = JSON.stringify({ 
-            "pepper_say": "^start(" + animations[animation] + ") " + say_str, 
-            "pitch" : pitch, 
+        var msg = JSON.stringify({
+            "pepper_say": "^start(" + animations[animation] + ") " + say_str,
+            "pitch" : pitch,
             "speed" : speed,
             "cmd" : "ALAnimatedSpeech.say" });
         window.socket.send(msg);
@@ -214,9 +214,9 @@
     ext.say_with_animation_behavior = function(animation, say_str, pitch, speed) {
         pitch = Math.min(Math.max(50, pitch), 200);
         speed = Math.min(Math.max(50, speed), 400);
-        var msg = JSON.stringify({ 
-            "pepper_say_behavior": say_str, 
-            "pitch" : pitch, 
+        var msg = JSON.stringify({
+            "pepper_say_behavior": say_str,
+            "pitch" : pitch,
             "speed" : speed,
             "animation" : behavior_animations[animation],
             "cmd" : "ALBehaviorManager.startBehavior" });
@@ -230,9 +230,9 @@
         // send_cmd_naoqi("ALAnimatedSpeech.say", [say_str]);
         pitch = Math.min(Math.max(50, pitch), 200);
         speed = Math.min(Math.max(50, speed), 400);
-        var msg = JSON.stringify({ 
-            "pepper_say": say_str, 
-            "pitch" : pitch, 
+        var msg = JSON.stringify({
+            "pepper_say": say_str,
+            "pitch" : pitch,
             "speed" : speed,
             "cmd" : "ALAnimatedSpeech.say" });
         window.socket.send(msg);
@@ -253,15 +253,15 @@
     * @param {Number} y amount Pepper should move in meters. Positive implies forward motion
     * @param {Number} rad amount Pepper should rotate in radians. Positive implies CCW motion
     */
-    ext.move = function(x, y, rad) {
-        var final_x = x;
-        var final_y = y;
-        if (lang == 'ja') { // x and y are flipped
-            final_x = y;
-            final_y = x;
-        }
-        send_cmd_naoqi("ALMotion.moveTo", [final_x, final_y, rad]);
-    }
+    // ext.move = function(x, y, rad) {
+    //     var final_x = x;
+    //     var final_y = y;
+    //     if (lang == 'ja') { // x and y are flipped
+    //         final_x = y;
+    //         final_y = x;
+    //     }
+    //     send_cmd_naoqi("ALMotion.moveTo", [final_x, final_y, rad]);
+    // }
 
     /**
     * Event listener for when a specific Pepper event occurs
@@ -332,18 +332,18 @@
     /**
     * Hides the media on Pepper's tablet display.
     */
-    ext.hide_media = function() {
-        send_cmd_naoqi("ALTabletService.hideImage", []);
-    }
-    
+    // ext.hide_media = function() {
+    //     send_cmd_naoqi("ALTabletService.hideImage", []);
+    // }
+
     /**
     * @param {String} filename name of the media file to upload to Pepper. Must include file extension.
     */
-    ext.upload_media = function(filename) {
-        var msg = JSON.stringify({ "pepper_upload_media": filename });
-        window.socket.send(msg);
-    }
-
+    // ext.upload_media = function(filename) {
+    //     var msg = JSON.stringify({ "pepper_upload_media": filename });
+    //     window.socket.send(msg);
+    // }
+    //
     ext.pause_speech_recognition = function() {
         send_cmd_naoqi("ALSpeechRecognition.pause", [true]);
     }
@@ -351,7 +351,7 @@
     ext.resume_speech_recognition = function() {
         send_cmd_naoqi("ALSpeechRecognition.pause", [false]);
     }
-    
+
     var paramString = window.location.search.replace(/^\?|\/$/g, '');
     var vars = paramString.split("&");
     var lang = 'en';
@@ -360,7 +360,7 @@
         if (pair.length > 1 && pair[0]=='lang')
             lang = pair[1];
     }
-    
+
     var block_descriptors = {
         en: [
                 // connection
@@ -429,8 +429,8 @@
 
     var menu_descriptors = {
         en: {
-            eventMenu : ["InitializationComplete", "RightBumperPressed", "LeftBumperPressed", "HandLeftBackTouched", "HandRightBackTouched", "HeadTouched", "FaceDetected", "SpeechDetected", "WordRecognized", "Button1Pressed", "Button2Pressed", "Button3Pressed", "Button4Pressed", "ButtonYesPressed", "ButtonNoPressed"],
-            dataMenu : ["FaceDetected", "WordRecognized"],
+            eventMenu : ["InitializationComplete", "RightBumperPressed", "LeftBumperPressed", "HandLeftBackTouched", "HandRightBackTouched", "HeadTouched", "SpeechDetected", "WordRecognized"],
+            dataMenu : ["WordRecognized"],
             posesMenu : ["wave", "bow", "nod", "shake head"],
             languageMenu : ["English", "日本語"],
             safetyMenu : ["on", "off"],
@@ -450,13 +450,13 @@
             tabletPageMenu : ["お題画像", "Pepperロゴ"],
         }
     }
-    
+
     // Block and block menu descriptions
     var descriptor = {
         // format: Block type, block name, function name, default variables
         blocks: block_descriptors[lang],
         menus: menu_descriptors[lang],
-        
+
         // documentation link
         url: "https://gist.github.com/loafa/4aa2a2546cfdda3c2320b1bbe2d9e579"
     };
